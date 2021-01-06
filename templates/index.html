@@ -1,0 +1,72 @@
+<HTML>
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <title>gpt2-ArticleGenerator</title>
+    </head>
+    <body>
+        <div class = "container">
+            <div class="jumbotron mt-3">
+
+                <h1>gpt2-ArticleGenerator</h1>
+                <h3>generate article base on title and content </h3>
+                <A>GitHub repository : </A> <A href="https://github.com/ha-mulan/gpt2-article-generator"> gpt2-ArticleGenerator repo</A>
+                <br>
+                <A>Open API : </A> <A href="https://ainize.ai/ha-mulan/gpt2-article-generator?branch=master"> on Ainize </A>
+
+                <hr class="solid">
+
+                <h2>How to use</h2>
+                <div id="usage">
+                    <p>1. input article title.</p>
+                    <p>2. input initial content of article</p>
+                    <p>3. Press the Run button and wait for about 15 seconds to get the result.</p>
+                </div>
+
+
+                <hr class="solid">
+                <h2>Example</h2>
+                <div id="usage">
+                  <h5>if title is 'trump' and initial content is 'news' you can checkout the result like this</h5>
+                </div>
+                <hr class="solid">
+                <p>trump news@theguardian. com Caption The media has been covering Donald Trump and his presidency for years. Donald Trump holds up two copies of his 2005 book ”The Art of the Deal.” (AP ) Donald Trump’s campaign manager, Corey Lewandowski, said Wednesday that the Republican presidential candidate’s campaign is “not focusing on the presidency,” and that he doesn’t see “that” changing. “I see it as focusing on the small things that are important to the American people and to the country,” Lewandowski told reporters in Washington. “I don’t think that’s changing. ” Donald Trump, center, and his son Eric, walk past a Trump hotel in New York. (Reuters) The former reality television star and reality show host came to the Trump campaign as a candidate. He has said that he’s not in favor of a new Supreme Court nominee. (Reuters) But the Trump campaign has so far disavowed the criticism, telling reporters Wednesday that it was “a misunderstanding” of the campaign’s policy. “We stand by what we have said,” Trump told the press. “This is not something that’s going to be taken lightly. ” Caption The media has been covering Donald Trump and his presidency for years.</p>
+
+
+                <hr class="solid">
+                <h2>Make your own article </h2>
+                <p>Please enter a title below</p>
+                <input id='title'>
+                <p>Please enter initial content below</p>
+                <input id='content'>
+                <p></p>
+                <button onclick='printName()'>RUN</button>
+                <p></p>
+                <script type="text/javascript">
+                 function printName()  {
+                   const title = document.getElementById('title').value;
+                   const content = document.getElementById('content').value;
+                   fetch('/api/?title='+title+'&content='+content).then(function(response){
+                     response.text().then(function(text){
+                       document.getElementById("result").innerText = text;
+                     })
+                   })
+                 }
+               </script>
+                  <hr class="solid">
+                <h2>your generated article</h2>
+                  <hr class="solid">
+                <div id='result'></div>
+       
+    </div>
+            </div>
+        </div>
+    </body>
+</HTML>
