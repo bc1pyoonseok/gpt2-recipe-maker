@@ -1,6 +1,8 @@
 from transformers import AutoModelWithLMHead, AutoTokenizer, top_k_top_p_filtering
 import torch
 from flask import Flask, request, Response, jsonify
+from flask import Flask, render_template, request, Response, send_file, jsonify
+
 from torch.nn import functional as F
 from queue import Queue, Empty
 import time
@@ -54,10 +56,10 @@ def run_model(prompt, num=1, length=30):
         sample_outputs = model.generate(input_ids, pad_token_id=50256,
                                         do_sample=True,
                                         max_length=300,
-                                        min_length=min_length,
-                                        top_k=40,
-                                        num_return_sequences=num)
 
+                                        top_k=50,
+                                        num_return_sequences=num)
+        # sample_outputs = model.generate(input_ids,max_length)
         generated_texts = ""
         # print(sample_outputs)
         # for i, sample_output in enumerate(sample_outputs):
@@ -66,6 +68,8 @@ def run_model(prompt, num=1, length=30):
         #     generated_texts+= output
         for i, sample_output in enumerate(sample_outputs):
             output = tokenizer.decode(sample_output.tolist(),skip_special_tokens=False)
+            # output = tokenizer.decode(sample_output.tolist()[
+                                          # min_length:], skip_special_tokens=True)
             generated_texts+= output+'\n'
         print(generated_texts)
         return generated_texts
@@ -107,10 +111,14 @@ def generate():
 
 
 # Health Check
-@app.route("/healthz", methods=["GET"])
-def healthCheck():
-    return "", 200
 
+@app.route('/healthz')
+def health():
+    return "ok", 200
+
+@app.route('/')
+def main():
+    return render_template('index.html')
 
 if __name__ == "__main__":
     from waitress import serve
