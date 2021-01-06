@@ -1,18 +1,18 @@
 openapi: 3.0.1
 
 info:
-  title: ainize-gpt2-cover-letter
+  title: ainize-gpt2-recipe-maker
   description: |
-      generate cover-letter sentence based fine-tuned gpt2 model
+      generate recipe based fine-tuned gpt2 model
   contact:
-    name: Ainizer - Jeong Hyunsu
+    name: Ainizer - yoonseok ham
   version: "2.0"
   license:
     name: Apache License 2.0
     url: https://github.com/huggingface/transformers/blob/master/LICENSE
 
 servers:
-  - url: https://main-gpt2-practice-ha-mulan.endpoint.ainize.ai/
+  - url: https://main-gpt2-recipe-maker-ha-mulan.endpoint.ainize.ai/
 
 paths:
   /api/:
