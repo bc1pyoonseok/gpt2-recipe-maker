@@ -35,7 +35,7 @@ def handle_requests_by_batch():
                 # if len(requests['input']) == 2 :
                 # elif len(requests['input']) == 3 :
                 # requests['output'] = run_model(requests['input'][0][0], requests['input'][0][1], requests['input'][0][2])
-                requests['output'] = run_model(requests['input'][0])#, requests['input'][0][1], requests['input'][0][2])
+                requests['output'] = run_model(requests['input'][0]+':')#, requests['input'][0][1], requests['input'][0][2])
 
 
 # 쓰레드
